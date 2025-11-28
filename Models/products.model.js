@@ -4,7 +4,7 @@ const products = [
     title: "mobiles",
     name: "samsung",
     description: "newly launched samsung F30 version",
-    price: "$50000",
+    price: 50000,
     stock: true
   },
    {
@@ -12,7 +12,7 @@ const products = [
     title: "Watch",
     name: "Apple",
     description: "newly launched Apple watch 3.0",
-    price: "$50000",
+    price: 50000,
     stock: true
   },
 ];

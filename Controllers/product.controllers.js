@@ -18,4 +18,26 @@ const getProduct = (req, res) => {
   }
 };
 
-module.exports = { getAllProducts, getProduct };
+// POST new Product
+const postProducts = (req, res) => {
+   
+  const { title, name, description, price, stock } = req.body;
+
+  if (!title || !name || !description || !price || !stock ) {
+    return res.status(400).json({ message: "All fields are required." });
+  }
+  const newProduct = {
+    id: productsModel.length
+      ? productsModel[productsModel.length - 1].id + 1
+      : 1,
+    title,
+    name,
+    description,
+    price,
+    stock,
+  };
+  productsModel.push(newProduct);
+  res.status(201).json(newProduct);
+};
+
+module.exports = { getAllProducts, getProduct ,postProducts };
