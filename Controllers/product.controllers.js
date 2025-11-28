@@ -20,10 +20,9 @@ const getProduct = (req, res) => {
 
 // POST new Product
 const postProducts = (req, res) => {
-   
   const { title, name, description, price, stock } = req.body;
 
-  if (!title || !name || !description || !price || !stock ) {
+  if (!title || !name || !description || !price || !stock) {
     return res.status(400).json({ message: "All fields are required." });
   }
   const newProduct = {
@@ -40,4 +39,40 @@ const postProducts = (req, res) => {
   res.status(201).json(newProduct);
 };
 
-module.exports = { getAllProducts, getProduct ,postProducts };
+// UPDATE product
+const updateProduct = (req, res) => {
+  const id = parseInt(req.params.id);
+  const { title, name, description, price, stock } = req.body;
+  const product = productsModel.find((existingData) => existingData.id === id);
+
+  if (product) {
+    product.title = title ?? product.title;
+    product.name = name ?? product.name;
+    product.description = description ?? product.description;
+    product.price = price ?? product.price;
+    product.stock = stock ?? product.stock;
+    res.status(200).json(product);
+  } else {
+    res.status(404).json({ message: "product not found" });
+  }
+};
+
+// DELETE products
+const deleteProducts = (req, res) => {
+  const id = parseInt(req.params.id);
+  const product = productsModel.findIndex((existingData) => existingData.id === id);
+
+  if (product !== -1) {
+    const deletedProduct = productsModel.splice(product, 1);
+    res.status(200).json(deletedProduct[0]);
+  } else {
+    res.status(404).json({ message: "product not found" });
+  }
+};
+module.exports = {
+  getAllProducts,
+  getProduct,
+  postProducts,
+  updateProduct,
+  deleteProducts,
+};

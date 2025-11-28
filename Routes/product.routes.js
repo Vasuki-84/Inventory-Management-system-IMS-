@@ -3,6 +3,8 @@ const {
   getAllProducts,
   getProduct,
   postProducts,
+  updateProduct,
+  deleteProducts,
 } = require("../Controllers/product.controllers");
 const routes = express.Router();
 
@@ -10,5 +12,7 @@ const routes = express.Router();
 routes.get("/", getAllProducts);
 routes.get("/:id", getProduct);
 routes.post("/", postProducts);
+routes.put("/:id", updateProduct);
+routes.delete("/:id", deleteProducts);
 
 module.exports = routes;
