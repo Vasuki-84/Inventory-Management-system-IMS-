@@ -7,5 +7,13 @@ const products = [
     price: "$50000",
     stock: true
   },
+   {
+    id: 2,
+    title: "Watch",
+    name: "Apple",
+    description: "newly launched Apple watch 3.0",
+    price: "$50000",
+    stock: true
+  },
 ];
 module.exports = products;
